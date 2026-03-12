@@ -38,10 +38,6 @@ for x in data_aktivitas:
 
 
 
-
-
-
-
 #3
 ukm_coding = {"Andi", "Budi", "Caca", "Deni"}
 ukm_robotik = {"Caca", "Deni", "Euis", "Fafa"}
