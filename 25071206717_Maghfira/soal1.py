@@ -14,31 +14,6 @@ def registrasi_gadget(merk, tipe, harga, sn):
         "status": "Tersedia"
     }
 
-def main():
-    inventaris = []
-    for x in range(3):
-        merk = input("Masukkan merk: ")
-        tipe = input("Masukkan tipe: ")
-        harga = int(input("Masukkan harga: "))
-        sn = input("Masukkan SN: ")
-        print("==================\n")
-        
-        gadget = registrasi_gadget(merk, tipe, harga, sn)
-        while gadget == None:
-            merk = input("Masukkan merk: ")
-            tipe = input("Masukkan tipe: ")
-            harga = int(input("Masukkan harga: "))
-            sn = input("Masukkan SN: ")
-            print("==================\n")
-            gadget = registrasi_gadget(merk, tipe, harga, sn)
-        inventaris.append(gadget)
-        
-    print(inventaris)
-
-
-if __name__ == "__main__":
-    main()
-
 pasien_hari_ini = [
     {"id": "P001", "nama": "Andi",  "usia": 34, "penyakit": "Flu",   "bayar": False},
     {"id": "P002", "nama": "Budi",  "usia": 22, "penyakit": "Tifus", "bayar": True},
