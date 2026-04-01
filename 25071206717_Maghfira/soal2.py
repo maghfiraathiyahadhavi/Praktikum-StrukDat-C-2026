@@ -15,7 +15,7 @@ def info_klinik():
     print("Telp   :", info[2])
 
 def rekap_penyakit():
-    data = pasien_hari_ini
+    data = rekap_penyakit
     
     # set (unik)
     unik = set([p["penyakit"] for p in data])
@@ -41,6 +41,5 @@ def rekap_penyakit():
 info_klinik()
 rekap_penyakit()
 
-if __name__ == "__main__":
-    main()
+
 
