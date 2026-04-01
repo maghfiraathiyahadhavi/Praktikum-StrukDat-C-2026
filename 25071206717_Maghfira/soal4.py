@@ -5,20 +5,77 @@ def hitung_komisi(total_penjualan, skema, index=0):
     else:
         return hitung_komisi(total_penjualan, skema, index + 1)
 
-def main():
-    skema_komisi = (
-        (100000000, 10), # Penjualan >= 100jt -> Komisi 10%
-        (50000000,  5),  # Penjualan >= 50jt  -> Komisi 5%
-        (20000000,  2),  # Penjualan >= 20jt  -> Komisi 2%
-        (0,         0)   # Di bawah 20jt      -> Tidak ada komisi
-    )
-
-    nama_sales = input("Masukkan nama sales: ")
-    total_penjualan = int(input("Masukkan total penjualan: "))
-    komisi = hitung_komisi(total_penjualan, skema_komisi, 0)
-    print(f"Nama Sales: {nama_sales}")
-    print(f"Komisi    : {total_penjualan * (komisi / 100)}")
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
 
-if __name__ == "__main__":
-    main()
+class AntrianPasien:
+    def __init__(self):
+        self.head = None
+
+    def tambah(self, data):
+        new = Node(data)
+        if not self.head:
+            self.head = new
+            return
+        
+        cur = self.head
+        while cur.next:
+            cur = cur.next
+        cur.next = new
+
+    def tampilkan(self):
+        cur = self.head
+        i = 1
+        print("=== ANTRIAN ===")
+        while cur:
+            d = cur.data
+            print(f"[{i}] {d['id']} - {d['nama']}")
+            cur = cur.next
+            i += 1
+
+    def panggil(self):
+        if self.head:
+            print("Panggil:", self.head.data["nama"])
+            self.head = self.head.next
+
+    def cari(self, nama):
+        cur = self.head
+        i = 1
+        while cur:
+            if cur.data["nama"] == nama:
+                print("Ditemukan di posisi", i)
+                return
+            cur = cur.next
+            i += 1
+        print("Tidak ditemukan")
+
+    def hapus_berdasarkan_id(self, id):
+        cur = self.head
+        prev = None
+
+        if cur and cur.data["id"] == id:
+            self.head = cur.next
+            return
+
+        while cur and cur.data["id"] != id:
+            prev = cur
+            cur = cur.next
+
+        if not cur:
+            print("ID tidak ada")
+            return
+
+        prev.next = cur.next
+
+    def hitung(self):
+        count = 0
+        cur = self.head
+        while cur:
+            count += 1
+            cur = cur.next
+        return count
+
+
