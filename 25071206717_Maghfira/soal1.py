@@ -14,6 +14,21 @@ def registrasi_gadget(merk, tipe, harga, sn):
         "status": "Tersedia"
     }
 
+def registrasi_gadget(merk, tipe, harga, sn):
+    if harga < 1000000:
+        print("harga tidak valid")
+        return None
+    elif len(sn) < 5:
+        print("serial number tidak valid")
+        return None
+    return {
+        "merk": merk,
+        "tipe": tipe,
+        "harga": harga,
+        "sn": sn,
+        "status": "Tersedia"
+}
+
 pasien_hari_ini = [
     {"id": "P001", "nama": "Andi",  "usia": 34, "penyakit": "Flu",   "bayar": False},
     {"id": "P002", "nama": "Budi",  "usia": 22, "penyakit": "Tifus", "bayar": True},
@@ -23,26 +38,29 @@ pasien_hari_ini = [
     {"id": "P006", "nama": "Fajar", "usia": 17, "penyakit": "Maag",  "bayar": False},
 ]
 
-def tampilkan_pasien():
-    print("===== DATA PASIEN KLINIK =====")
+def tampilkan_pasien(): #menampilkan data pasien
+    print("===== DATA PASIEN ====")
     print("No | ID   | Nama  | Usia | Penyakit | Status Bayar")
     
-    for i, p in enumerate(pasien_hari_ini, 1):
-        status = "Lunas" if p["bayar"] else "Belum Bayar"
-        print(f"{i}  | {p['id']} | {p['nama']} | {p['usia']} | {p['penyakit']} | {status}")
+    for i in range(len(pasien_hari_ini)): #looping
+        n = pasien_hari_ini[i]  
+        status = "Lunas" if n["bayar"] else "Belum Bayar"
+        print(f"{i+1} | {n['id']} | {n['nama']} | {n['usia']} | {n['penyakit']} | {status}")
+        
+def filter_belum_bayar(): #list pasien yg belum bayar
+    belum = []
 
-def filter_belum_bayar():
-    # list comprehension
-    belum = [p["nama"] for p in pasien_hari_ini if not p["bayar"]]
+    for p in pasien_hari_ini: #loop
+        if not p["bayar"]:
+            belum.append(p["nama"]) #list comprehension
     
-    # sorting
-    belum.sort()
+    belum.sort()    # sorting
     
-    print("\n===== PASIEN BELUM BAYAR =====")
-    for i, nama in enumerate(belum, 1):
-        print(f"{i}. {nama}")
-    
+    print("\n===== PASIEN BELUM BAYAR =====") #menampilkan pasien yg belum bayar
+    for i in range(len(belum)):
+        print(f"{i+1}. {belum[i]}")
+
     print("Total belum bayar:", len(belum))
 
-tampilkan_pasien()
+tampilkan_pasien() #memanggil fungsi untuk output
 filter_belum_bayar()
