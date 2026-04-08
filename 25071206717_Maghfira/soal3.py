@@ -6,52 +6,116 @@ def update_stok(katalog, sn_target, jumlah_tambah):
             except KeyError:
                 x["stok"] = jumlah_tambah
             print(f"Update berhasil! Stok {x["merk"]} {x["tipe"]}: {x["stok"]}")
-class Pasien: #class
-    jumlah = 0 #variable class
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
-    def __init__(self, id, nama, penyakit):
-        self.__id = id #atribut
-        self.__nama = nama
-        self.__penyakit = penyakit
+class AntrianPasien:
+    def __init__(self):
+        self.head = None
 
-        Pasien.jumlah += 1
+    def tambah(self, data):   # tambah di akhir (FIFO)
+        new_node = Node(data)
+        
+        if not self.head:
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = new_node
 
-    def get_id(self):   # Get
-        return self.__id
+    def tampilkan(self): # tampilkan antrian
+        print("\n===== ANTRIAN PASIEN =====")
+        current = self.head
+        i = 1
+        
+        while current:
+            d = current.data
+            print(f"[{i}] {d['id']} - {d['nama']} | {d['penyakit']}")
+            current = current.next
+            i += 1
+        
+        print("Total antrian:", self.hitung())
 
-    def get_nama(self):
-        return self.__nama
+    def panggil_berikutnya(self): # panggil (hapus depan)
+        if not self.head:
+            print("Antrian kosong!")
+            return
+        
+        print("\nMemanggil pasien berikutnya...")
+        d = self.head.data
+        print(f"Silakan masuk: {d['nama']} ({d['id']}) - {d['penyakit']}")
+        
+        self.head = self.head.next  # hapus node pertama
 
-    def get_penyakit(self):
-        return self.__penyakit
+    def cari(self, nama): # cari berdasarkan nama
+        print(f"\nMencari '{nama}'...")
+        current = self.head
+        posisi = 1
+        
+        while current:
+            if current.data["nama"] == nama:
+                d = current.data
+                print(f"Ditemukan: {d['id']} - {d['nama']} | {d['penyakit']} (posisi ke-{posisi})")
+                return
+            current = current.next
+            posisi += 1
+        
+        print("Tidak ditemukan.")
 
-    def tampilkan_info(self):  # Method tampilkan info
-        print("ID      :", self.__id)
-        print("Nama    :", self.__nama)
-        print("Penyakit:", self.__penyakit)
+    def hapus_berdasarkan_id(self, id):    # hapus berdasarkan ID
+        print(f"\nMenghapus pasien dengan ID {id}...")
+        
+        # kasus 1: head
+        if self.head and self.head.data["id"] == id:
+            d = self.head.data
+            self.head = self.head.next
+            print(f"{d['nama']} ({d['id']}) berhasil dihapus dari antrian.")
+            return
+        
+        # kasus 2: tengah/akhir
+        current = self.head
+        while current and current.next:
+            if current.next.data["id"] == id:
+                d = current.next.data
+                current.next = current.next.next
+                print(f"{d['nama']} ({d['id']}) berhasil dihapus dari antrian.")
+                return
+            current = current.next
+        
+        # kasus 3: tidak ditemukan
+        print("ID tidak ditemukan dalam antrian.")
 
-    @staticmethod
-    def hitung_pasien():
-        return Pasien.jumlah
+    def hitung(self):  # hitung jumlah node
+        count = 0
+        current = self.head
+        
+        while current:
+            count += 1
+            current = current.next
+        
+        return count
 
-class PasienPrioritas(Pasien): #class turunan
-    def __init__(self, id, nama, penyakit, prioritas):
-        super().__init__(id, nama, penyakit)
-        self.prioritas = prioritas
+antrian = AntrianPasien()
 
-    def tampilkan_info(self): # Override method
-        super().tampilkan_info()
-        print("Prioritas :", self.prioritas)
+# tambah data
+antrian.tambah({"id": "P001", "nama": "Andi", "penyakit": "Flu"})
+antrian.tambah({"id": "P002", "nama": "Budi", "penyakit": "Tifus"})
+antrian.tambah({"id": "P003", "nama": "Cici", "penyakit": "Flu"})
+antrian.tambah({"id": "P004", "nama": "Dani", "penyakit": "Maag"})
 
-        if self.prioritas == "Darurat":
-            print("** Segera tangani! **")
+antrian.tampilkan()
 
+antrian.panggil_berikutnya() # panggil pasien pertama
 
-p1 = Pasien("P001", "Andi", "Flu") # objek
-p2 = PasienPrioritas("P007", "Ghani", "Sesak Napas", "Darurat") # objek prioritas
+antrian.tampilkan() # tampilkan lagi
 
-p1.tampilkan_info()
-print()
-p2.tampilkan_info()
+antrian.hapus_berdasarkan_id("P003") # hapus pasien
 
-print("\nTotal pasien:", Pasien.hitung_pasien()) #menampilkan total pasien
+antrian.tampilkan() # tampilkan lagi
+
+antrian.cari("Dani") # cari pasien
+
+print("Total antrian:", antrian.hitung()) # total akhir
