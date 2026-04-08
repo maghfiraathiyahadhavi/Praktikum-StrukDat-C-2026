@@ -14,20 +14,7 @@ def registrasi_gadget(merk, tipe, harga, sn):
         "status": "Tersedia"
     }
 
-def registrasi_gadget(merk, tipe, harga, sn):
-    if harga < 1000000:
-        print("harga tidak valid")
-        return None
-    elif len(sn) < 5:
-        print("serial number tidak valid")
-        return None
-    return {
-        "merk": merk,
-        "tipe": tipe,
-        "harga": harga,
-        "sn": sn,
-        "status": "Tersedia"
-}
+
 
 pasien_hari_ini = [
     {"id": "P001", "nama": "Andi",  "usia": 34, "penyakit": "Flu",   "bayar": False},
