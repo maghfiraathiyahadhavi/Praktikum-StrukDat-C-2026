@@ -16,66 +16,77 @@ class AntrianPasien:
         self.head = None
 
     def tambah(self, data):
-        new = Node(data)
+        new_node = Node(data)
         if not self.head:
-            self.head = new
+            self.head = new_node
             return
         
-        cur = self.head
-        while cur.next:
-            cur = cur.next
-        cur.next = new
+        current = self.head
+        while current.next:
+            current = current.next
+        current.next = new_node
 
     def tampilkan(self):
-        cur = self.head
+        print("\n===== ANTRIAN PASIEN =====")
+        current = self.head
         i = 1
-        print("=== ANTRIAN ===")
-        while cur:
-            d = cur.data
-            print(f"[{i}] {d['id']} - {d['nama']}")
-            cur = cur.next
+        
+        while current:
+            d = current.data
+            print(f"[{i}] {d['id']} - {d['nama']} | {d['penyakit']}")
+            current = current.next
             i += 1
+        
+        print("Total antrian:", self.hitung())
 
-    def panggil(self):
-        if self.head:
-            print("Panggil:", self.head.data["nama"])
-            self.head = self.head.next
+    def panggil_berikutnya(self):
+        if not self.head:
+            return
+        
+        d = self.head.data
+        print(f"Silakan masuk: {d['nama']} ({d['id']}) - {d['penyakit']}")
+        self.head = self.head.next
 
     def cari(self, nama):
-        cur = self.head
+        current = self.head
         i = 1
-        while cur:
-            if cur.data["nama"] == nama:
-                print("Ditemukan di posisi", i)
+        
+        while current:
+            if current.data["nama"] == nama:
+                d = current.data
+                print(f"Ditemukan: {d['id']} - {d['nama']} | {d['penyakit']} (posisi ke-{i})")
                 return
-            cur = cur.next
+            current = current.next
             i += 1
+        
         print("Tidak ditemukan")
 
     def hapus_berdasarkan_id(self, id):
-        cur = self.head
+        current = self.head
         prev = None
 
-        if cur and cur.data["id"] == id:
-            self.head = cur.next
+        # head
+        if current and current.data["id"] == id:
+            print(f"{current.data['nama']} ({id}) dihapus")
+            self.head = current.next
             return
 
-        while cur and cur.data["id"] != id:
-            prev = cur
-            cur = cur.next
+        # tengah / akhir
+        while current and current.data["id"] != id:
+            prev = current
+            current = current.next
 
-        if not cur:
-            print("ID tidak ada")
+        if not current:
+            print("ID tidak ditemukan")
             return
 
-        prev.next = cur.next
+        print(f"{current.data['nama']} ({id}) dihapus")
+        prev.next = current.next
 
     def hitung(self):
         count = 0
-        cur = self.head
-        while cur:
+        current = self.head
+        while current:
             count += 1
-            cur = cur.next
+            current = current.next
         return count
-
-
