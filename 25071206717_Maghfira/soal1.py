@@ -63,4 +63,4 @@ def filter_belum_bayar(): #list pasien yg belum bayar
     print("Total belum bayar:", len(belum))
 
 tampilkan_pasien() #memanggil fungsi untuk output
-filter_belum_bayar()
+filter_belum_bayar() 
