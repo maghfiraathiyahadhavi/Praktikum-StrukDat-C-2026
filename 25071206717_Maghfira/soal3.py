@@ -15,7 +15,6 @@ class Pasien:
         self.__penyakit = penyakit
         Pasien.jumlah += 1
 
-    # getter (WAJIB biar aman)
     def get_id(self):
         return self.__id
 
@@ -26,9 +25,9 @@ class Pasien:
         return self.__penyakit
 
     def tampilkan_info(self):
-        print("ID :", self.__id)
-        print("Nama :", self.__nama)
-        print("Penyakit :", self.__penyakit)
+        print("ID      :", self.__id)
+        print("Nama    :", self.__nama)
+        print("Penyakit:", self.__penyakit)
 
     @staticmethod
     def hitung_pasien():
@@ -46,3 +45,12 @@ class PasienPrioritas(Pasien):
         if self.prioritas == "Darurat":
             print("** Segera tangani! **")
 
+
+p1 = Pasien("P001", "Andi", "Flu")
+p2 = PasienPrioritas("P007", "Ghani", "Sesak Napas", "Darurat")
+
+p1.tampilkan_info()
+print()
+p2.tampilkan_info()
+
+print("\nTotal pasien:", Pasien.hitung_pasien())
