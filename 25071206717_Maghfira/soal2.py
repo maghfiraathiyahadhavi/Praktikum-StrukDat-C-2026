@@ -15,32 +15,29 @@ pasien_hari_ini = [
     {"id": "P006", "nama": "Fajar", "usia": 17, "penyakit": "Maag",  "bayar": False},
 ]
 
-def info_klinik():
-    info = ("Klinik Sehat Bersama", "Jl. Merdeka No.10", "0761-12345")
+def tampilkan_pasien(): #menampilkan data pasien
+    print("===== DATA PASIEN ====")
+    print("No | ID   | Nama  | Usia | Penyakit | Status Bayar")
     
-    print("Info Klinik:")
-    print("Nama   :", info[0])
-    print("Alamat :", info[1])
-    print("Telp   :", info[2])
+    for i in range(len(pasien_hari_ini)): #looping
+        n = pasien_hari_ini[i]  
+        status = "Lunas" if n["bayar"] else "Belum Bayar"
+        print(f"{i+1} | {n['id']} | {n['nama']} | {n['usia']} | {n['penyakit']} | {status}")
+        
+def filter_belum_bayar(): #list pasien yg belum bayar
+    belum = []
 
-def rekap_penyakit():
-    unik = set([p["penyakit"] for p in pasien_hari_ini])
-    print("\nJenis Penyakit Unik:", unik)
-    print("Jumlah jenis penyakit:", len(unik))
-    
-    frek = {}
-    for p in pasien_hari_ini:
-        penyakit = p["penyakit"]
-        frek[penyakit] = frek.get(penyakit, 0) + 1
-    
-    print("\nRekap per penyakit:")
-    for k, v in frek.items():
-        print(f"{k} : {v} pasien")
-    
-    maks = max(frek.values())
-    hasil = [k for k in frek if frek[k] == maks]
-    
-    print("Penyakit terbanyak:", ", ".join(hasil), f"({maks} pasien)")
+    for p in pasien_hari_ini: #loop
+        if not p["bayar"]:
+            belum.append(p["nama"]) #list comprehension
 
-info_klinik()
-rekap_penyakit()
+    belum.sort()    # sorting
+    
+    print("\n===== PASIEN BELUM BAYAR =====") #menampilkan pasien yg belum bayar
+    for i in range(len(belum)):
+        print(f"{i+1}. {belum[i]}")
+
+    print("Total belum bayar:", len(belum))
+
+tampilkan_pasien() #memanggil fungsi untuk output
+filter_belum_bayar()
