@@ -33,7 +33,7 @@ def filter_belum_kembali(): #list pengujung belum kembali
 
     belum.sort ()
 
-    print("\n===== PASIEN BELUM KEMBALI =====") 
+    print("\n===== PENGUNJUNG BELUM KEMBALI =====") 
     for i in range(len(belum)):
         print(f"{i+1}. {belum[i]}")
     
