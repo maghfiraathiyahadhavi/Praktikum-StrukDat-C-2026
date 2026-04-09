@@ -89,7 +89,7 @@ class Pasien: #class
     def tampilkan_info(self):  # Method tampilkan info
         print("ID      :", self.__id)
         print("Nama    :", self.__nama)
-        print("Penyakit:", self.__penyakit)
+        print("usia:", self.__usia)
 
     @staticmethod
     def hitung_pasien():
