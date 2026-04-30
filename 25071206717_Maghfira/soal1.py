@@ -20,7 +20,7 @@ def main():
         merk = input("Masukkan merk: ")
         tipe = input("Masukkan tipe: ")
         harga = int(input("Masukkan harga: "))
-        sn = input("Masukkan SN: ")
+        sn = input("Masukkan sn: ")
         print("==================\n")
         
         gadget = registrasi_gadget(merk, tipe, harga, sn)
@@ -28,7 +28,7 @@ def main():
             merk = input("Masukkan merk: ")
             tipe = input("Masukkan tipe: ")
             harga = int(input("Masukkan harga: "))
-            sn = input("Masukkan SN: ")
+            sn = input("Masukkan sn: ")
             print("==================\n")
             gadget = registrasi_gadget(merk, tipe, harga, sn)
         inventaris.append(gadget)
