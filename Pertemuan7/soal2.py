@@ -26,7 +26,7 @@ def tambah(head, newNode, position):
   currentNode.next = newNode
   return head
 
-def kurang (head, nodeToDelete):
+def minus(head, nodeToDelete):
   if head == nodeToDelete:
     return head.next
 
@@ -61,6 +61,6 @@ plat1 = tambah(plat1, newPlat, 5)
 print("\n Setelah ditambah")
 traverseAndPrint(plat1)
 
-plat1 = kurang(plat1,plat3)
+plat1 = minus(plat1,plat3)
 print("\n Setelah di Kurang")
 traverseAndPrint(plat1)
