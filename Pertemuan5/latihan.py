@@ -33,11 +33,6 @@ for x in data_aktivitas:
    else:
       print(f"{nama} mendapatkan predikat bronze")
 
-
-
-
-
-
 #3
 ukm_coding = {"Andi", "Budi", "Caca", "Deni"}
 ukm_robotik = {"Caca", "Deni", "Euis", "Fafa"}
@@ -49,7 +44,6 @@ salah_satu = ukm_coding.union(ukm_robotik)
 print(salah_satu)
 
 print("andi" in ukm_robotik)
-
 
 
 #4
