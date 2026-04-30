@@ -26,7 +26,7 @@ def tambah(head, newNode, position):
   currentNode.next = newNode
   return head
 
-def kurang (head, nodeToDelete):
+def minus (head, nodeToDelete):
   if head == nodeToDelete:
     return head.next
 

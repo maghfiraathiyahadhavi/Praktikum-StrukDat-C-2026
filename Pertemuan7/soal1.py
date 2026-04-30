@@ -1,6 +1,6 @@
 #nomor 1
 
-["B 1234 ABC", "D 8888 XYZ", "A 111 TUV", "B 2022 EFG"]
+["B 4321 ABC", "D 8888 XYZ", "A 111 TUV", "B 2022 EFG"]
 
 def pisah_ganjil_genap(plat_array):
     ganjil = []
@@ -19,7 +19,7 @@ def pisah_ganjil_genap(plat_array):
 
     return ganjil, genap
 
-data_plat = ["B 1234 ABC", "D 8888 XYZ", "A 111 TUV", "B 2022 EFG"]
+data_plat = ["B 4321 ABC", "D 8888 XYZ", "A 111 TUV", "B 2022 EFG"]
 
 ganjil, genap = pisah_ganjil_genap(data_plat)
 
