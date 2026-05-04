@@ -4,16 +4,19 @@ class MyJussBuah:
         self.color = color
         self.weight = weight
 
-def introduce_self(self, buah, color):
-    print(f"Haloo buah saya {buah} dengan color {color}")
+    def introduce_self(self):
+        print(f"Haloo buah saya {self.buah} dengan color {self.color}")
 
-def update_color (self, buah, new_color):
-    self.color = new_color
+    def update_color(self, new_color):
+        self.color = new_color
 
-buah1 = MyJussBuah("Jeruk", "kuning", "80")
-buah2 = MyJussBuah("Anggur", "Unggu", "78")
+
+buah1 = MyJussBuah("Jeruk", "Kuning", "80")
+buah2 = MyJussBuah("Anggur", "Ungu", "78")
 buah3 = MyJussBuah("Melon", "Hijau", "67")
-        
 
-
+# update warna
 buah3.update_color("Pink")
+
+# cek hasil
+buah3.introduce_self()
